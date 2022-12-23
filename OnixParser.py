@@ -5,7 +5,7 @@ import json
 import pandas as pd
 
 def get_catalogs_wb():
-    """получение каталога wb"""
+    
     url = 'https://www.wildberries.ru/webapi/menu/main-menu-ru-ru.json'
     headers = {'Accept': "*/*", 'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     response = requests.get(url, headers=headers)
@@ -50,7 +50,7 @@ def get_catalogs_wb():
 
 
 def search_category_in_catalog(url, catalog_list):
-    """пишем проверку пользовательской ссылки на наличии в каталоге"""
+    
     try:
         for catalog in catalog_list:
             if catalog['category_url'] == url.split('https://www.wildberries.ru')[-1]:
@@ -67,7 +67,7 @@ def search_category_in_catalog(url, catalog_list):
 
 
 def get_data_from_json(json_file):
-    """извлекаем из json интересующие нас данные"""
+    
     data_list = []
     for data in json_file['data']['products']:
         try:
@@ -114,7 +114,7 @@ def get_content(shard, query, low_price=None, top_price=None):
 
 
 def save_excel(data, filename):
-    """сохранение результата в excel файл"""
+    
     df = pd.DataFrame(data)
     writer = pd.ExcelWriter(f'{filename}.xlsx')
     df.to_excel(writer, 'data')
